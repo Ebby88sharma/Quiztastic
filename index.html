@@ -4,34 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Quiz</title>
+    <title>Quiztastic</title>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/brain.png">
     <link rel="icon" sizes="32x32" href="./assets/images/brain.png">
     <link rel="icon" sizes="16x16" href="./assets/images/brain.png">
+    </head>
 </head>
 
 <body>
-    <header>
-        <h1>Welcome to the Online Quiz</h1>
-        <p>Please enter your username to begin:</p>
-        <input type="text" id="username" placeholder="Enter your username">
-        <button id="startQuizBtn">Start Quiz</button>
-    </header>
-
-    <section id="quizSection" style="display:none;">
-        <h2 id="questionTitle">Question 1:</h2>
-        <div id="questionText"></div>
-        <div id="answers">
-            <!-- Options will be dynamically generated here -->
-        </div>
-        <button id="submitAnswerBtn">Submit Answer</button>
-    </section>
-
-    <footer id="resultSection" style="display:none;">
-        <h2>Your Score: <span id="score"></span></h2>
-        <p id="feedback"></p>
-    </footer>
+    <div id="quiz-container">
+        <h1>Welcome to Quiztastic!</h1>
+        <p>Enter your username to start:</p>
+        <input type="text" id="username" placeholder="Your Name">
+        <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
+        <h2 id="question">Question will appear here</h2>
+        <div id="answers-container"></div>
+        <button id="next-btn" onclick="loadNextQuestion()" style="display: none;">Next Question</button>
+        <h3 id="final-score"></h3>
+        <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
+    </div>
 
     <script src="script.js"></script>
 </body>
