@@ -1,4 +1,36 @@
-body{
-    background-color: brown;
-    color:whitesmoke
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header,
+footer {
+    padding: 20px;
+    background-color: #f8f8f8;
+}
+
+#quizSection {
+    padding: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#answers {
+    margin-top: 20px;
+}
+
+#resultSection {
+    margin-top: 20px;
 }

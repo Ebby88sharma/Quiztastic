@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiztastic</title>
+    <title>Online Quiz</title>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/brain.png">
+    <link rel="icon" sizes="32x32" href="./assets/images/brain.png">
+    <link rel="icon" sizes="16x16" href="./assets/images/brain.png">
 </head>
+
 <body>
-    <h1>Quiz App</h1>
-    
+    <header>
+        <h1>Welcome to the Online Quiz</h1>
+        <p>Please enter your username to begin:</p>
+        <input type="text" id="username" placeholder="Enter your username">
+        <button id="startQuizBtn">Start Quiz</button>
+    </header>
+
+    <section id="quizSection" style="display:none;">
+        <h2 id="questionTitle">Question 1:</h2>
+        <div id="questionText"></div>
+        <div id="answers">
+            <!-- Options will be dynamically generated here -->
+        </div>
+        <button id="submitAnswerBtn">Submit Answer</button>
+    </section>
+
+    <footer id="resultSection" style="display:none;">
+        <h2>Your Score: <span id="score"></span></h2>
+        <p id="feedback"></p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
