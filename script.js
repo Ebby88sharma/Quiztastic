@@ -1,135 +1,124 @@
-const quizData = [
+const startButton = document.getElementById('start-quiz');
+const questionContainer = document.getElementById('question-container');
+const questionElement = document.getElementById('question');
+const answerButtonsElement = document.getElementById('answer-buttons');
+const nextButton = document.getElementById('next-btn');
+const resultContainer = document.getElementById('result-container');
+const finalScoreText = document.getElementById('final-score');
+const restartButton = document.getElementById('restart-btn');
+const animationContainer = document.getElementById('animation-container');
+
+let currentQuestionIndex;
+let score = 0;
+
+const questions = [
     {
-        question: "What is the capital of France?",
-        type: "text", // Normal text-based question
+        question: 'What is the capital of France?',
         answers: [
-            "Berlin",
-            "Madrid",
-            "Paris",
-            "Rome"
-        ],
-        correct: 2  // Correct answer is "Paris"
+            { text: 'Berlin', correct: false },
+            { text: 'Paris', correct: true },
+            { text: 'Madrid', correct: false },
+        ]
     },
     {
-        question: "Which of these is the Eiffel Tower?",
-        type: "image", // Image-based question
+        question: 'What is 2 + 2?',
         answers: [
-            "./assets/images/eifel-tower.jpg",
-            "./assets/images/statue-of-liberty.jpg",
-            "./assets/images/coloseum.jpg",
-            "./assets/images/big-ben.jpg"
-        ],
-        correct: 0  // Correct answer is the first image
+            { text: '3', correct: false },
+            { text: '4', correct: true },
+            { text: '5', correct: false },
+        ]
     },
-    {
-        question: "Which is the most widely spoken language in the world?",
-        type: "text", // Another text-based question
-        answers: [
-            "English",
-            "Mandarin",
-            "Spanish",
-            "Hindi"
-        ],
-        correct: 1  // Correct answer is "Mandarin"
-    },
-    {
-        question: "Which painting was created by Leonardo da Vinci?",
-        type: "image", // Image-based question
-        answers: [
-            "assets/images/starry-night.jpg",
-            "assets/images/mona-lisa.jpg",
-            "assets/images/the-scream.jpg",
-            "assets/images/girl-with-pearl.jpg"
-        ],
-        correct: 1  // Correct answer is "Mona Lisa"
-    }
+    // Add more questions here
 ];
 
-let currentQuestionIndex = 0;
-let score = 0;
-let username = '';
+startButton.addEventListener('click', startQuiz);
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++;
+    setNextQuestion();
+});
+restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
-    username = document.getElementById('username').value;
-    if (username.trim() === '') {
-        alert("Please enter your name to start.");
-        return;
-    }
-    document.getElementById('start-btn').style.display = 'none';
-    document.getElementById('username').style.display = 'none';
-    loadQuestion();
+    score = 0;
+    startButton.classList.add('hide');
+    currentQuestionIndex = 0;
+    questionContainer.classList.remove('hide');
+    setNextQuestion();
 }
 
-function loadQuestion() {
-    const questionData = quizData[currentQuestionIndex];
-
-    // Display question text
-    document.getElementById('question').innerText = questionData.question;
-
-    // Display the answers (text or image)
-    const answersContainer = document.getElementById('answers-container');
-    answersContainer.innerHTML = '';  // Clear previous answers
-
-    if (questionData.type === "text") {
-        // Render text-based answers
-        questionData.answers.forEach((answer, index) => {
-            const button = document.createElement('button');
-            button.innerText = answer;
-            button.classList.add('text-option');
-            button.addEventListener('click', () => selectAnswer(index));
-            answersContainer.appendChild(button);
-        });
-    } else if (questionData.type === "image") {
-        // Render image-based answers
-        questionData.answers.forEach((imageSrc, index) => {
-            const imgOption = document.createElement('img');
-            imgOption.src = imageSrc;
-            imgOption.classList.add('image-option');
-            imgOption.addEventListener('click', () => selectAnswer(index));
-            answersContainer.appendChild(imgOption);
-        });
-    }
-
-    // Show the next question button
-    document.getElementById('next-btn').style.display = 'none';
+function setNextQuestion() {
+    resetState();
+    showQuestion(questions[currentQuestionIndex]);
 }
 
-function loadNextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < quizData.length) {
-        loadQuestion();
+function showQuestion(question) {
+    questionElement.innerText = question.question;
+    question.answers.forEach(answer => {
+        const button = document.createElement('button');
+        button.innerText = answer.text;
+        button.classList.add('btn');
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener('click', selectAnswer);
+        answerButtonsElement.appendChild(button);
+    });
+}
+
+function resetState() {
+    nextButton.classList.add('hide');
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+    }
+}
+
+function selectAnswer(e) {
+    const selectedButton = e.target;
+    const correct = selectedButton.dataset.correct;
+    if (correct) {
+        score++;
+    }
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct);
+    });
+    if (questions.length > currentQuestionIndex + 1) {
+        nextButton.classList.remove('hide');
     } else {
-        // End of quiz, show final score
         showFinalScore();
     }
 }
 
-function selectAnswer(selectedIndex) {
-    const questionData = quizData[currentQuestionIndex];
-    if (selectedIndex === questionData.correct) {
-        alert("Correct!");
-        score++;
+function setStatusClass(element, correct) {
+    clearStatusClass(element);
+    if (correct) {
+        element.classList.add('correct');
     } else {
-        alert("Wrong answer.");
+        element.classList.add('wrong');
     }
-    document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct');
+    element.classList.remove('wrong');
 }
 
 function showFinalScore() {
-    document.getElementById('answers-container').style.display = 'none';
-    document.getElementById('question').style.display = 'none';
-    document.getElementById('next-btn').style.display = 'none';
-
-    document.getElementById('final-score').innerText = `${username}, your final score is ${score}/${quizData.length}`;
-    document.getElementById('restart-btn').style.display = 'inline-block';
+    questionContainer.classList.add('hide');
+    resultContainer.classList.remove('hide');
+    finalScoreText.innerText = `Your Final Score: ${score}`;
+    if (score > questions.length / 2) {
+        animationContainer.classList.remove('hide');
+        animationContainer.classList.add('success');
+        animationContainer.innerHTML = 'Congratulations! 🎉';
+    } else {
+        animationContainer.classList.remove('hide');
+        animationContainer.classList.add('fail');
+        animationContainer.innerHTML = 'Try Again! 😔';
+    }
 }
 
 function restartQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    document.getElementById('answers-container').style.display = 'flex';
-    document.getElementById('question').style.display = 'block';
-    document.getElementById('restart-btn').style.display = 'none';
-    document.getElementById('final-score').innerText = '';
-    loadQuestion();
+    resultContainer.classList.add('hide');
+    animationContainer.classList.add('hide');
+    startButton.classList.remove('hide');
 }

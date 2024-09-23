@@ -1,81 +1,335 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* General Body Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    background-color: #f0f0f0;
     margin: 0;
+    padding: 0;
 }
 
-#quiz-container {
+/* Main Container */
+.container {
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 700px;
+    /* Increase width for larger display */
     text-align: center;
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 0 20px;
+    /* Margin to ensure it looks good on smaller screens */
 }
 
+/* Headings */
 h1 {
-    color: #ffcc00;
+    font-size: 3rem;
+    /* Larger title */
+    margin-bottom: 25px;
+    color: #f39c12;
 }
 
-#username {
-    padding: 10px;
-    width: 50%;
-    margin-bottom: 10px;
-    border-radius: 4px;
+/* Inputs */
+input[type="text"] {
+    font-size: 1.5rem;
+    /* Larger input */
+    padding: 15px;
+    width: 90%;
+    margin-bottom: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
 }
 
+/* Buttons */
 button {
+    font-size: 1.5rem;
+    /* Larger buttons */
+    padding: 12px 25px;
+    margin: 10px;
+    background-color: #27ae60;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #219150;
+    /* Darken on hover */
+}
+
+/* Adjust question and answer blocks */
+.question,
+.answer {
+    margin: 20px 0;
+    font-size: 1.5rem;
+    /* Larger text */
+}
+
+.start-container input {
+    padding: 10px;
+    width: 80%;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.start-btn {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    font-size: 1rem;
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 10px;
 }
 
-button:hover {
-    background-color: #45a049;
+.start-btn:hover {
+    background-color: #218838;
 }
 
-#answers-container {
-    display: flex;
-    justify-content: space-around;
+.question-container,
+.result-container {
     margin-top: 20px;
 }
 
-.text-option {
-    padding: 10px 20px;
-    font-size: 18px;
-    background-color: #f0f0f0;
-    border: 1px solid black;
+.question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#question {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.answer-buttons {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.answer-buttons .btn {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.text-option:hover {
-    background-color: #4CAF50;
-    color: #fff;
+.answer-buttons .btn:hover {
+    background-color: #138496;
 }
 
-.image-option {
-    max-width: 150px;
-    max-height: 150px;
-    border: 2px solid transparent;
+.next-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    margin-top: 20px;
 }
 
-.image-option:hover {
-    transform: scale(1.05);
-    border-color: #4CAF50;
+.next-btn:hover {
+    background-color: #0056b3;
 }
 
-.image-option:active {
-    transform: scale(0.95);
+#final-score {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.restart-btn {
+    background-color: #17a2b8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.restart-btn:hover {
+    background-color: #138496;
+}
+
+.hide {
+    display: none;
+}
+
+/* Animation section */
+@keyframes success-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fail-animation {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#animation-container.success {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px;
+    border-radius: 10px;
+    animation: success-animation 1s infinite;
+}
+
+#animation-container.fail {
+    background-color: #F44336;
+    color: white;
+    font-size: 1.5rem;
+    padding: 20px;
+    border-radius: 10px;
+    animation: fail-animation 1s infinite;
+}
+
+/* Responsiveness */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #question {
+        font-size: 1.2rem;
+    }
+
+    .answer-buttons .btn {
+        font-size: 1rem;
+        padding: 8px;
+    }
+
+    .start-container input,
+    .start-btn {
+        font-size: 1rem;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .answer-buttons .btn {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+
+    .start-container input,
+    .start-btn {
+        font-size: 0.9rem;
+    }
+}
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 80%;
+        /* For medium screens, reduce width */
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    button {
+        font-size: 1.25rem;
+        padding: 10px 20px;
+    }
+
+    input[type="text"] {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+        /* For smaller screens */
+        padding: 30px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    button {
+        font-size: 1.1rem;
+        padding: 8px 18px;
+    }
+
+    input[type="text"] {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        max-width: 95%;
+        /* For mobile screens */
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 7px 15px;
+    }
+
+    input[type="text"] {
+        font-size: 1rem;
+    }
 }

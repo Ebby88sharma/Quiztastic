@@ -9,22 +9,35 @@
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/brain.png">
     <link rel="icon" sizes="32x32" href="./assets/images/brain.png">
     <link rel="icon" sizes="16x16" href="./assets/images/brain.png">
-    </head>
 </head>
 
 <body>
-    <div id="quiz-container">
-        <h1>Welcome to Quiztastic!</h1>
-        <p>Enter your username to start:</p>
-        <input type="text" id="username" placeholder="Your Name">
-        <button id="start-btn" onclick="startQuiz()">Start Quiz</button>
-        <h2 id="question">Question will appear here</h2>
-        <div id="answers-container"></div>
-        <button id="next-btn" onclick="loadNextQuestion()" style="display: none;">Next Question</button>
-        <h3 id="final-score"></h3>
-        <button id="restart-btn" onclick="restartQuiz()" style="display: none;">Restart Quiz</button>
-    </div>
+    <div class="container">
+        <div class="quiz-container" id="quiz">
+            <h1>Welcome to Quiztastic!</h1>
+            <div class="start-container">
+                <input type="text" id="username" placeholder="Enter your username">
+                <button id="start-quiz" class="start-btn">Start Quiz</button>
+            </div>
+        </div>
 
+        <div class="question-container hide" id="question-container">
+            <div id="question">Question</div>
+            <div class="answer-buttons" id="answer-buttons">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+            <button id="next-btn" class="next-btn hide">Next Question</button>
+        </div>
+
+        <div class="result-container hide" id="result-container">
+            <h2 id="final-score">Final Score:</h2>
+            <button id="restart-btn" class="restart-btn">Restart Quiz</button>
+            <div id="animation-container" class="hide"></div>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 
