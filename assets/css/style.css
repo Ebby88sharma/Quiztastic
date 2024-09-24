@@ -10,7 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f0f0f0;
+    background-color: rgba(66, 135, 245);
     margin: 0;
     padding: 0;
 }
@@ -18,28 +18,27 @@ body {
 /* Main Container */
 .container {
     background-color: #ffffff;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    padding: 40px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 10);
+    padding: 120px;
     border-radius: 12px;
-    max-width: 700px;
-    /* Increase width for larger display */
+    max-width: 1800px;
     text-align: center;
     margin: 0 20px;
-    /* Margin to ensure it looks good on smaller screens */
 }
 
 /* Headings */
 h1 {
-    font-size: 3rem;
-    /* Larger title */
+    font-size: 3.5rem;
     margin-bottom: 25px;
-    color: #f39c12;
+    color: black;
+    /* Light gray for a soft contrast */
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 5);
+    /* Shadow for more readability */
 }
 
 /* Inputs */
 input[type="text"] {
     font-size: 1.5rem;
-    /* Larger input */
     padding: 15px;
     width: 90%;
     margin-bottom: 20px;
@@ -50,7 +49,6 @@ input[type="text"] {
 /* Buttons */
 button {
     font-size: 1.5rem;
-    /* Larger buttons */
     padding: 12px 25px;
     margin: 10px;
     background-color: #27ae60;
@@ -62,15 +60,12 @@ button {
 
 button:hover {
     background-color: #219150;
-    /* Darken on hover */
 }
 
-/* Adjust question and answer blocks */
 .question,
 .answer {
     margin: 20px 0;
     font-size: 1.5rem;
-    /* Larger text */
 }
 
 .start-container input {
