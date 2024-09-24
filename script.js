@@ -28,7 +28,7 @@ const questions = [
             { text: '5', correct: false },
         ]
     },
-    // Add more questions here
+  
 ];
 
 startButton.addEventListener('click', startQuiz);
