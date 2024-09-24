@@ -31,9 +31,7 @@ h1 {
     font-size: 3.5rem;
     margin-bottom: 25px;
     color: black;
-    /* Light gray for a soft contrast */
-    text-shadow: 3px 3px 4px rgba(0, 0, 0, 5);
-    /* Shadow for more readability */
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 1.9);
 }
 
 /* Inputs */
@@ -270,7 +268,6 @@ button:hover {
 @media (max-width: 1200px) {
     .container {
         max-width: 80%;
-        /* For medium screens, reduce width */
     }
 
     h1 {
@@ -290,7 +287,6 @@ button:hover {
 @media (max-width: 768px) {
     .container {
         max-width: 90%;
-        /* For smaller screens */
         padding: 30px;
     }
 
@@ -311,7 +307,6 @@ button:hover {
 @media (max-width: 480px) {
     .container {
         max-width: 95%;
-        /* For mobile screens */
         padding: 20px;
     }
 
