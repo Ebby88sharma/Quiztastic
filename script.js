@@ -158,7 +158,10 @@ function clearStatusClass(element) {
 function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
-    finalScoreText.innerText = `Your Final Score: ${score}`;
+    
+    // Keep the title showing the final score
+    quizTitle.innerText = `Your Final Score: ${score}`;
+    
     clearInterval(timerInterval); 
     if (score > questions.length / 2) {
         animationContainer.classList.remove('hide');
@@ -169,10 +172,8 @@ function showFinalScore() {
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
     }
-
-    // Reset the title when the quiz finishes
-    quizTitle.innerText = "Welcome to Quiztastic!";
 }
+
 
 function restartQuiz() {
     resultContainer.classList.add('hide');
@@ -181,9 +182,10 @@ function restartQuiz() {
     document.querySelector('.start-container').classList.remove('hide');
     questionContainer.classList.add('hide');  // Hide question container on restart
 
-    // Reset title to "Welcome to Quiztastic!" when restarting
+    // Reset the title back to "Welcome to Quiztastic!" on restart
     quizTitle.innerText = "Welcome to Quiztastic!";
 }
+
 
 function resetTimer() {
     timeLeft = 20; 
