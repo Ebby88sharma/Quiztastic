@@ -1,6 +1,6 @@
 # Quiztastic 🤘🔥
 
-**Deployed Site**: [Quiztastic](#https://ebby88sharma.github.io/Quiztastic/)
+**Deployed Site**: [Quiztastic](https://ebby88sharma.github.io/Quiztastic/)
 
 ![Quiztastic on multiple screens](./assets/images/backscreen.png)
 
