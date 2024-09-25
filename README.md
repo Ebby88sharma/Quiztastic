@@ -1,8 +1,11 @@
 # Quiztastic 🤘🔥
 
-**Deployed Site**: [Quiztastic](#https://github.com/Ebby88sharma/Quiztastic)
+**Deployed Site**: [Quiztastic](#https://ebby88sharma.github.io/Quiztastic/)
+
+![Quiztastic on multiple screens](./assets/images/backscreen.png)
 
 Quiztastic is a fun, interactive online quiz application designed for trivia enthusiasts across a range of subjects. Whether you're into General Knowledge, Science, History, or Geography, this quiz will put your knowledge to the test with 8-10 challenging questions in each category.
+
 
 ## CONTENTS
 
@@ -52,8 +55,6 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 - **Raleway**: Used for headings and buttons to give a clean and professional look.
 - **Sans-serif**: Applied to body text for easy readability across all screen sizes.
-
-![Quiztastic on multiple screens](./assets/images/backscreen.png)
 
 ## Features
 
