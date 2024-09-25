@@ -21,7 +21,7 @@ body {
     box-shadow: 0 0 50px rgba(0, 0, 0, 10);
     padding: 120px;
     border-radius: 12px;
-    max-width: 1800px;
+    max-width: 1200px;
     text-align: center;
     margin: 0 20px;
 }
@@ -35,7 +35,8 @@ h1 {
 }
 
 /* Inputs */
-input[type="text"] {
+input[type="text"],
+select {
     font-size: 1.5rem;
     padding: 15px;
     width: 90%;
@@ -167,6 +168,14 @@ button:hover {
     display: none;
 }
 
+/* Timer styling */
+#timer {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
 /* Animation section */
 @keyframes success-animation {
     0% {
@@ -218,108 +227,4 @@ button:hover {
     padding: 20px;
     border-radius: 10px;
     animation: fail-animation 1s infinite;
-}
-
-/* Responsiveness */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    #question {
-        font-size: 1.2rem;
-    }
-
-    .answer-buttons .btn {
-        font-size: 1rem;
-        padding: 8px;
-    }
-
-    .start-container input,
-    .start-btn {
-        font-size: 1rem;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .container {
-        width: 95%;
-    }
-
-    h1 {
-        font-size: 1.5rem;
-    }
-
-    .answer-buttons .btn {
-        font-size: 0.9rem;
-        padding: 6px;
-    }
-
-    .start-container input,
-    .start-btn {
-        font-size: 0.9rem;
-    }
-}
-/* Media Queries for Responsiveness */
-@media (max-width: 1200px) {
-    .container {
-        max-width: 80%;
-    }
-
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    button {
-        font-size: 1.25rem;
-        padding: 10px 20px;
-    }
-
-    input[type="text"] {
-        font-size: 1.25rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        max-width: 90%;
-        padding: 30px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    button {
-        font-size: 1.1rem;
-        padding: 8px 18px;
-    }
-
-    input[type="text"] {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        max-width: 95%;
-        padding: 20px;
-    }
-
-    h1 {
-        font-size: 1.75rem;
-    }
-
-    button {
-        font-size: 1rem;
-        padding: 7px 15px;
-    }
-
-    input[type="text"] {
-        font-size: 1rem;
-    }
 }

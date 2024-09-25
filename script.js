@@ -8,11 +8,14 @@ const finalScoreText = document.getElementById('final-score');
 const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
 const categorySelect = document.getElementById('quiz-category');
-
+const timerElement = document.getElementById('timer'); // Timer element
 
 let currentQuestionIndex;
 let score = 0;
+let timer;
+let timeLeft = 30;
 
+// Quiz Questions categorized
 const questions = {
     general: [
         { question: 'What is the capital of France?', answers: [{ text: 'Berlin', correct: false }, { text: 'Paris', correct: true }, { text: 'Madrid', correct: false }] },
@@ -40,16 +43,15 @@ function startQuiz() {
     const selectedCategory = categorySelect.value;
     currentQuestionIndex = 0;
     questionContainer.classList.remove('hide');
-    setNextQuestion(selectedCategory);
     startButton.classList.add('hide');
+    setNextQuestion(selectedCategory);
 }
-
 
 function setNextQuestion(selectedCategory) {
     resetState();
+    startTimer();
     showQuestion(questions[selectedCategory][currentQuestionIndex]);
 }
-
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
@@ -66,6 +68,9 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    clearInterval(timer); // Reset the timer
+    timeLeft = 30; // Reset the time to 30 seconds
+    timerElement.innerHTML = `Time Left: ${timeLeft}s`; // Reset timer display
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -81,7 +86,8 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
     });
-    if (questions.length > currentQuestionIndex + 1) {
+    clearInterval(timer); // Stop the timer when the answer is selected
+    if (questions[categorySelect.value].length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
         showFinalScore();
@@ -106,10 +112,32 @@ function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
+    
+    let highScore = localStorage.getItem('highScore') || 0;
+    if (score > highScore) {
+        localStorage.setItem('highScore', score);
+        highScore = score;
+    }
+    
+    finalScoreText.innerHTML += `<p>High Score: ${highScore}</p>`;
 }
 
 function restartQuiz() {
     resultContainer.classList.add('hide');
-    animationContainer.classList.add('hide');
     startButton.classList.remove('hide');
+    nextButton.classList.add('hide');
+}
+
+// Timer function
+function startTimer() {
+    timeLeft = 30;
+    timerElement.innerHTML = `Time Left: ${timeLeft}s`;
+    timer = setInterval(() => {
+        timeLeft--;
+        timerElement.innerHTML = `Time Left: ${timeLeft}s`;
+        if (timeLeft === 0) {
+            clearInterval(timer);
+            nextButton.classList.remove('hide');
+        }
+    }, 1000);
 }
