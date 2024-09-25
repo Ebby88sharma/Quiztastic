@@ -155,24 +155,30 @@ function showFinalScore() {
     }
 }
 
-function restartQuiz() {
-    resultContainer.classList.add('hide');
-    animationContainer.classList.add('hide');
+function startQuiz() {
+    const usernameInput = document.getElementById('username');
+    const username = usernameInput.value.trim();
+
+    if (!username) {
+        alert('Please enter a username to start the quiz.');
+        return; // Exit the function if no username is provided
+    }
 
     score = 0;
+    timeLeft = 20;
+    clearInterval(timerInterval);
+
+    startButton.classList.add('hide');
+    document.querySelector('.start-container').classList.add('hide');
+
+    const selectedCategory = categorySelect.value;
+    questions = allQuestions[selectedCategory];
     currentQuestionIndex = 0;
 
-    timeLeft = 20;
-    timerElement.innerHTML = `Time Left: ${timeLeft}s`;
-
-    document.querySelector('.start-container').classList.remove('hide');
-    startButton.classList.remove('hide'); 
-
-    questionContainer.classList.add('hide');
-    resetState();
-
-    clearInterval(timerInterval);
+    questionContainer.classList.remove('hide');
+    setNextQuestion();
 }
+
 
 function resetTimer() {
     timeLeft = 20; 
