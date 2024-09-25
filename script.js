@@ -7,29 +7,55 @@ const resultContainer = document.getElementById('result-container');
 const finalScoreText = document.getElementById('final-score');
 const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
-const categorySelect = document.getElementById('quiz-category');
-const timerElement = document.getElementById('timer'); // Timer element
+const timerElement = document.getElementById('timer');
+const categorySelect = document.getElementById('category');
 
 let currentQuestionIndex;
 let score = 0;
-let timer;
-let timeLeft = 30;
+let timeLeft = 20;
+let timerInterval;
 
-// Quiz Questions categorized
-const questions = {
-    general: [
-        { question: 'What is the capital of France?', answers: [{ text: 'Berlin', correct: false }, { text: 'Paris', correct: true }, { text: 'Madrid', correct: false }] },
-        { question: 'What is 2 + 2?', answers: [{ text: '3', correct: false }, { text: '4', correct: true }, { text: '5', correct: false }] },
+const allQuestions = {
+    "General Knowledge": [
+        {
+            question: 'What is the capital of France?',
+            answers: [
+                { text: 'Berlin', correct: false },
+                { text: 'Paris', correct: true },
+                { text: 'Madrid', correct: false },
+            ]
+        },
+        {
+            question: 'What is 2 + 2?',
+            answers: [
+                { text: '3', correct: false },
+                { text: '4', correct: true },
+                { text: '5', correct: false },
+            ]
+        }
     ],
-    science: [
-        { question: 'What is the chemical symbol for water?', answers: [{ text: 'H2O', correct: true }, { text: 'CO2', correct: false }, { text: 'NaCl', correct: false }] },
-        { question: 'What planet is known as the Red Planet?', answers: [{ text: 'Venus', correct: false }, { text: 'Mars', correct: true }, { text: 'Jupiter', correct: false }] },
+    "Science": [
+        {
+            question: 'What planet is known as the Red Planet?',
+            answers: [
+                { text: 'Mars', correct: true },
+                { text: 'Jupiter', correct: false },
+                { text: 'Venus', correct: false },
+            ]
+        },
+        {
+            question: 'What is the chemical symbol for water?',
+            answers: [
+                { text: 'H2O', correct: true },
+                { text: 'O2', correct: false },
+                { text: 'CO2', correct: false },
+            ]
+        }
     ],
-    sports: [
-        { question: 'Which country won the FIFA World Cup in 2018?', answers: [{ text: 'Germany', correct: false }, { text: 'France', correct: true }, { text: 'Brazil', correct: false }] },
-        { question: 'How many players are there in a football team?', answers: [{ text: '9', correct: false }, { text: '11', correct: true }, { text: '12', correct: false }] },
-    ]
+    // You can add more categories and questions
 };
+
+let questions = [];
 
 startButton.addEventListener('click', startQuiz);
 nextButton.addEventListener('click', () => {
@@ -40,17 +66,24 @@ restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
     score = 0;
-    const selectedCategory = categorySelect.value;
-    currentQuestionIndex = 0;
-    questionContainer.classList.remove('hide');
+    timeLeft = 20; 
+    clearInterval(timerInterval); 
+
     startButton.classList.add('hide');
-    setNextQuestion(selectedCategory);
+    document.querySelector('.start-container').classList.add('hide');
+
+    const selectedCategory = categorySelect.value;
+    questions = allQuestions[selectedCategory];
+    currentQuestionIndex = 0;
+
+    questionContainer.classList.remove('hide'); 
+    setNextQuestion(); 
 }
 
-function setNextQuestion(selectedCategory) {
+function setNextQuestion() {
     resetState();
-    startTimer();
-    showQuestion(questions[selectedCategory][currentQuestionIndex]);
+    showQuestion(questions[currentQuestionIndex]);
+    resetTimer();
 }
 
 function showQuestion(question) {
@@ -68,9 +101,6 @@ function showQuestion(question) {
 }
 
 function resetState() {
-    clearInterval(timer); // Reset the timer
-    timeLeft = 30; // Reset the time to 30 seconds
-    timerElement.innerHTML = `Time Left: ${timeLeft}s`; // Reset timer display
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild);
@@ -86,10 +116,10 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
     });
-    clearInterval(timer); // Stop the timer when the answer is selected
-    if (questions[categorySelect.value].length > currentQuestionIndex + 1) {
+    if (questions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide');
     } else {
+        clearInterval(timerInterval);
         showFinalScore();
     }
 }
@@ -112,32 +142,40 @@ function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
-    
-    let highScore = localStorage.getItem('highScore') || 0;
-    if (score > highScore) {
-        localStorage.setItem('highScore', score);
-        highScore = score;
+    clearInterval(timerInterval); 
+    if (score > questions.length / 2) {
+        animationContainer.classList.remove('hide');
+        animationContainer.classList.add('success');
+        animationContainer.innerHTML = 'Congratulations! 🎉';
+    } else {
+        animationContainer.classList.remove('hide');
+        animationContainer.classList.add('fail');
+        animationContainer.innerHTML = 'Try Again! 😔';
     }
-    
-    finalScoreText.innerHTML += `<p>High Score: ${highScore}</p>`;
 }
 
 function restartQuiz() {
     resultContainer.classList.add('hide');
+    animationContainer.classList.add('hide');
     startButton.classList.remove('hide');
-    nextButton.classList.add('hide');
 }
 
-// Timer function
-function startTimer() {
-    timeLeft = 30;
+function resetTimer() {
+    timeLeft = 20; 
+    clearInterval(timerInterval);
     timerElement.innerHTML = `Time Left: ${timeLeft}s`;
-    timer = setInterval(() => {
+    timerInterval = setInterval(() => {
         timeLeft--;
         timerElement.innerHTML = `Time Left: ${timeLeft}s`;
-        if (timeLeft === 0) {
-            clearInterval(timer);
-            nextButton.classList.remove('hide');
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            alert('Time is up!');
+            if (questions.length > currentQuestionIndex + 1) {
+                currentQuestionIndex++;
+                setNextQuestion(); 
+            } else {
+                showFinalScore();
+            }
         }
     }, 1000);
 }

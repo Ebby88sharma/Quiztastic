@@ -17,10 +17,9 @@
             <h1>Welcome to Quiztastic!</h1>
             <div class="start-container">
                 <input type="text" id="username" placeholder="Enter your username">
-                <select id="quiz-category">
-                    <option value="general">General Knowledge</option>
-                    <option value="science">Science</option>
-                    <option value="sports">Sports</option>
+                <select id="category">
+                    <option value="General Knowledge">General Knowledge</option>
+                    <option value="Science">Science</option>
                 </select>
                 <button id="start-quiz" class="start-btn">Start Quiz</button>
             </div>
@@ -28,16 +27,9 @@
 
         <div class="question-container hide" id="question-container">
             <div id="question">Question</div>
-            <div class="answer-buttons" id="answer-buttons">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
-            </div>
-            <!-- Timer -->
-            <div id="timer" class="timer">Time Left: 30s</div>
+            <div class="answer-buttons" id="answer-buttons"></div>
+            <div class="timer" id="timer">Time Left: 20s</div>
             <button id="next-btn" class="next-btn hide">Next Question</button>
-            </div>
         </div>
 
         <div class="result-container hide" id="result-container">
