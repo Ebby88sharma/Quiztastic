@@ -114,11 +114,11 @@ The site is deployed using **GitHub Pages**.
 #### How to Clone
 
 1. Log into GitHub.
-2. Navigate to the [Quiztastic repository](#).
+2. Navigate to the [Quiztastic repository](#https://github.com/Ebby88sharma/Quiztastic).
 3. Click the **Code** button and copy the HTTPS/SSH link.
 4. Open the terminal in your preferred IDE, change the directory, and type:
    ```bash
-   git clone <repository_link>
+   git clone <https://github.com/Ebby88sharma/Quiztastic>
 
 ### Acknowledgments
 I would like to thank my Code Institute mentor, Can for his support and insightful feedbacks.
