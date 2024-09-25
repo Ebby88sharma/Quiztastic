@@ -52,11 +52,11 @@ const allQuestions = {
             ]
         }
     ],
-    // You can add more categories and questions
 };
 
 let questions = [];
 
+// Event listeners
 startButton.addEventListener('click', startQuiz);
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++;
@@ -65,21 +65,29 @@ nextButton.addEventListener('click', () => {
 restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
+    const username = document.getElementById('username').value;
+    
+    if (username.trim() === "") {
+        alert("Please enter your username.");
+        return;
+    }
+
+    // Reset score and timer
     score = 0;
     timeLeft = 20; 
     clearInterval(timerInterval); 
 
-    startButton.classList.add('hide'); // Hide the start button
-    document.querySelector('.start-container').classList.add('hide'); // Hide the input field
+    // Hide start container and button
+    startButton.classList.add('hide');
+    document.querySelector('.start-container').classList.add('hide');
 
     const selectedCategory = categorySelect.value;
     questions = allQuestions[selectedCategory];
     currentQuestionIndex = 0;
 
-    questionContainer.classList.remove('hide'); // Show the question container
+    questionContainer.classList.remove('hide'); 
     setNextQuestion(); 
 }
-
 
 function setNextQuestion() {
     resetState();
@@ -155,30 +163,13 @@ function showFinalScore() {
     }
 }
 
-function startQuiz() {
-    const usernameInput = document.getElementById('username');
-    const username = usernameInput.value.trim();
-
-    if (!username) {
-        alert('Please enter a username to start the quiz.');
-        return; // Exit the function if no username is provided
-    }
-
-    score = 0;
-    timeLeft = 20;
-    clearInterval(timerInterval);
-
-    startButton.classList.add('hide');
-    document.querySelector('.start-container').classList.add('hide');
-
-    const selectedCategory = categorySelect.value;
-    questions = allQuestions[selectedCategory];
-    currentQuestionIndex = 0;
-
-    questionContainer.classList.remove('hide');
-    setNextQuestion();
+function restartQuiz() {
+    resultContainer.classList.add('hide');
+    animationContainer.classList.add('hide');
+    startButton.classList.remove('hide');
+    document.querySelector('.start-container').classList.remove('hide');
+    questionContainer.classList.add('hide');  // Hide question container on restart
 }
-
 
 function resetTimer() {
     timeLeft = 20; 
