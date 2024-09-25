@@ -184,7 +184,14 @@ function restartQuiz() {
 
     // Reset the title back to "Welcome to Quiztastic!" on restart
     quizTitle.innerText = "Welcome to Quiztastic!";
+
+    // Clear the username input field when restarting the quiz
+    document.getElementById('username').value = '';
+
+    // Reset the category dropdown to the default value (first option)
+    categorySelect.selectedIndex = 0;
 }
+
 
 
 function resetTimer() {
