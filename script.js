@@ -69,16 +69,17 @@ function startQuiz() {
     timeLeft = 20; 
     clearInterval(timerInterval); 
 
-    startButton.classList.add('hide');
-    document.querySelector('.start-container').classList.add('hide');
+    startButton.classList.add('hide'); // Hide the start button
+    document.querySelector('.start-container').classList.add('hide'); // Hide the input field
 
     const selectedCategory = categorySelect.value;
     questions = allQuestions[selectedCategory];
     currentQuestionIndex = 0;
 
-    questionContainer.classList.remove('hide'); 
+    questionContainer.classList.remove('hide'); // Show the question container
     setNextQuestion(); 
 }
+
 
 function setNextQuestion() {
     resetState();
@@ -157,7 +158,20 @@ function showFinalScore() {
 function restartQuiz() {
     resultContainer.classList.add('hide');
     animationContainer.classList.add('hide');
-    startButton.classList.remove('hide');
+
+    score = 0;
+    currentQuestionIndex = 0;
+
+    timeLeft = 20;
+    timerElement.innerHTML = `Time Left: ${timeLeft}s`;
+
+    document.querySelector('.start-container').classList.remove('hide');
+    startButton.classList.remove('hide'); 
+
+    questionContainer.classList.add('hide');
+    resetState();
+
+    clearInterval(timerInterval);
 }
 
 function resetTimer() {
