@@ -131,19 +131,16 @@ button:hover {
     background-color: #138496;
 }
 
-.next-btn {
-    background-color: #007bff;
+/* Selected answer styling */
+.selected {
+    background-color: #ffc107;
     color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 20px;
+    border: 2px solid #ffc107;
 }
 
-.next-btn:hover {
-    background-color: #0056b3;
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 #final-score {
@@ -176,8 +173,6 @@ button:hover {
     margin-top: 10px;
     font-weight: bold;
 }
-
-
 
 /* Animation section */
 @keyframes success-animation {
@@ -231,3 +226,4 @@ button:hover {
     border-radius: 10px;
     animation: fail-animation 1s infinite;
 }
+

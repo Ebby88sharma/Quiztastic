@@ -14,7 +14,7 @@
 <body>
     <div class="container">
         <div class="quiz-container" id="quiz">
-            <h1>Welcome to Quiztastic!</h1>
+            <h1 id="quizTitle">Welcome to Quiztastic!</h1> <!-- Added id to the title for dynamic updates -->
             <div class="start-container">
                 <input type="text" id="username" placeholder="Enter your username">
                 <select id="category">
@@ -32,7 +32,7 @@
             <div id="question">Question</div>
             <div class="answer-buttons" id="answer-buttons"></div>
             <div class="timer" id="timer">Time Left: 20s</div>
-            <button id="next-btn" class="next-btn hide">Next Question</button>
+            <button id="next-btn" class="next-btn hide">Next Question</button> <!-- Removed auto-next button display -->
         </div>
 
         <div class="result-container hide" id="result-container">
