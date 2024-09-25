@@ -7,29 +7,26 @@ const resultContainer = document.getElementById('result-container');
 const finalScoreText = document.getElementById('final-score');
 const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
+const categorySelect = document.getElementById('quiz-category');
+
 
 let currentQuestionIndex;
 let score = 0;
 
-const questions = [
-    {
-        question: 'What is the capital of France?',
-        answers: [
-            { text: 'Berlin', correct: false },
-            { text: 'Paris', correct: true },
-            { text: 'Madrid', correct: false },
-        ]
-    },
-    {
-        question: 'What is 2 + 2?',
-        answers: [
-            { text: '3', correct: false },
-            { text: '4', correct: true },
-            { text: '5', correct: false },
-        ]
-    },
-  
-];
+const questions = {
+    general: [
+        { question: 'What is the capital of France?', answers: [{ text: 'Berlin', correct: false }, { text: 'Paris', correct: true }, { text: 'Madrid', correct: false }] },
+        { question: 'What is 2 + 2?', answers: [{ text: '3', correct: false }, { text: '4', correct: true }, { text: '5', correct: false }] },
+    ],
+    science: [
+        { question: 'What is the chemical symbol for water?', answers: [{ text: 'H2O', correct: true }, { text: 'CO2', correct: false }, { text: 'NaCl', correct: false }] },
+        { question: 'What planet is known as the Red Planet?', answers: [{ text: 'Venus', correct: false }, { text: 'Mars', correct: true }, { text: 'Jupiter', correct: false }] },
+    ],
+    sports: [
+        { question: 'Which country won the FIFA World Cup in 2018?', answers: [{ text: 'Germany', correct: false }, { text: 'France', correct: true }, { text: 'Brazil', correct: false }] },
+        { question: 'How many players are there in a football team?', answers: [{ text: '9', correct: false }, { text: '11', correct: true }, { text: '12', correct: false }] },
+    ]
+};
 
 startButton.addEventListener('click', startQuiz);
 nextButton.addEventListener('click', () => {
@@ -40,16 +37,19 @@ restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
     score = 0;
-    startButton.classList.add('hide');
+    const selectedCategory = categorySelect.value;
     currentQuestionIndex = 0;
     questionContainer.classList.remove('hide');
-    setNextQuestion();
+    setNextQuestion(selectedCategory);
+    startButton.classList.add('hide');
 }
 
-function setNextQuestion() {
+
+function setNextQuestion(selectedCategory) {
     resetState();
-    showQuestion(questions[currentQuestionIndex]);
+    showQuestion(questions[selectedCategory][currentQuestionIndex]);
 }
+
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
@@ -106,15 +106,6 @@ function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
-    if (score > questions.length / 2) {
-        animationContainer.classList.remove('hide');
-        animationContainer.classList.add('success');
-        animationContainer.innerHTML = 'Congratulations! 🎉';
-    } else {
-        animationContainer.classList.remove('hide');
-        animationContainer.classList.add('fail');
-        animationContainer.innerHTML = 'Try Again! 😔';
-    }
 }
 
 function restartQuiz() {
