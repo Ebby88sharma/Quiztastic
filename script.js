@@ -9,6 +9,7 @@ const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
 const timerElement = document.getElementById('timer');
 const categorySelect = document.getElementById('category');
+const quizTitle = document.querySelector('h1');  // Select the title element
 
 let currentQuestionIndex;
 let score = 0;
@@ -85,6 +86,9 @@ function startQuiz() {
     questions = allQuestions[selectedCategory];
     currentQuestionIndex = 0;
 
+    // Update the title to show "Question X/Y"
+    quizTitle.innerText = `Question 1/${questions.length}`;
+
     questionContainer.classList.remove('hide'); 
     setNextQuestion(); 
 }
@@ -92,6 +96,10 @@ function startQuiz() {
 function setNextQuestion() {
     resetState();
     showQuestion(questions[currentQuestionIndex]);
+
+    // Update the title dynamically with the current question number
+    quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+
     resetTimer();
 }
 
@@ -161,6 +169,9 @@ function showFinalScore() {
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
     }
+
+    // Reset the title when the quiz finishes
+    quizTitle.innerText = "Welcome to Quiztastic!";
 }
 
 function restartQuiz() {
@@ -169,6 +180,9 @@ function restartQuiz() {
     startButton.classList.remove('hide');
     document.querySelector('.start-container').classList.remove('hide');
     questionContainer.classList.add('hide');  // Hide question container on restart
+
+    // Reset title to "Welcome to Quiztastic!" when restarting
+    quizTitle.innerText = "Welcome to Quiztastic!";
 }
 
 function resetTimer() {
