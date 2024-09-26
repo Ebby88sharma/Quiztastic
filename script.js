@@ -463,15 +463,30 @@ function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
+    
     clearInterval(timerInterval);
-    if (score > questions.length / 2) {
+    
+    // Get audio elements
+    const goodSound = document.getElementById('good-sound');
+    const poorSound = document.getElementById('poor-sound');
+    
+    const performancePercentage = (score / questions.length) * 100;
+    
+    if (performancePercentage > 70) {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('success');
         animationContainer.innerHTML = 'Congratulations! 🎉';
+        goodSound.play();  // Play good performance sound
+    } else if (performancePercentage >= 50) {
+        animationContainer.classList.remove('hide');
+        animationContainer.classList.add('neutral');
+        animationContainer.innerHTML = 'Good job! You can do even better!';
+        averageSound.play();  // Play average performance sound
     } else {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
+        poorSound.play();  // Play poor performance sound
     }
 }
 
