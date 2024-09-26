@@ -423,6 +423,9 @@ function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
 
+    const clickSound = document.getElementById('click-sound');
+    clickSound.play();
+
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
         button.disabled = true;
@@ -432,7 +435,7 @@ function selectAnswer(e) {
         score++;
     }
 
-    setTimeout(() => {
+    clickSound.onended = () => {
         if (questions.length > currentQuestionIndex + 1) {
             currentQuestionIndex++;
             setNextQuestion();
@@ -440,8 +443,10 @@ function selectAnswer(e) {
             clearInterval(timerInterval);
             showFinalScore();
         }
-    }, 1000);
+    };
 }
+
+
 
 function setStatusClass(element, correct, isSelected = false) {
     clearStatusClass(element);
