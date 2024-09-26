@@ -250,7 +250,7 @@ button:hover {
 @media (max-width: 768px) {
     .container {
         padding: 40px;
-        max-width: 90%;
+        max-width: 80%;
     }
 
     h1 {
@@ -272,7 +272,7 @@ button:hover {
 }
 
 /* For larger screens like desktops */
-@media (min-width: 1024px) {
+@media (min-width: 768px) and (max-width: 1023px) {
     .container {
         padding: 80px;
         max-width: 80%;
