@@ -355,25 +355,28 @@ let questions = [];
 startButton.addEventListener('click', startQuiz);
 restartButton.addEventListener('click', restartQuiz);
 
+
 function startQuiz() {
     const username = document.getElementById('username').value;
-    
+
     if (username.trim() === "") {
         alert("Please enter your username.");
         return;
     }
+
     score = 0;
     timeLeft = 20;
     clearInterval(timerInterval);
 
     startButton.classList.add('hide');
     document.querySelector('.start-container').classList.add('hide');
+
     const selectedCategory = categorySelect.value;
-    questions = allQuestions[selectedCategory];
+    questions = shuffle([...allQuestions[selectedCategory]]);  // Shuffle questions
+
     currentQuestionIndex = 0;
 
     quizTitle.innerText = `Question 1/${questions.length}`;
-
     questionContainer.classList.remove('hide');
     setNextQuestion();
 }
@@ -383,7 +386,7 @@ function setNextQuestion() {
     showQuestion(questions[currentQuestionIndex]);
 
     quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-    
+
     updateProgressBar();
 
     resetTimer();
@@ -391,7 +394,10 @@ function setNextQuestion() {
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    question.answers.forEach(answer => {
+
+    const shuffledAnswers = shuffle([...question.answers]);
+
+    shuffledAnswers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
@@ -437,14 +443,14 @@ function selectAnswer(e) {
 function setStatusClass(element, correct, isSelected = false) {
     clearStatusClass(element);
     if (correct) {
-        element.classList.add('correct'); 
+        element.classList.add('correct');
     } else {
-        element.classList.add('wrong');  
+        element.classList.add('wrong');
     }
     if (isSelected) {
         element.classList.add('selected');
     }
-    element.disabled = true; 
+    element.disabled = true;
 }
 
 
@@ -510,3 +516,10 @@ function updateProgressBar() {
     progressBar.style.width = progress + '%';
 }
 
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
