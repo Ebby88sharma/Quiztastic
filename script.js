@@ -363,16 +363,16 @@ function startQuiz() {
         alert("Please enter your username.");
         return;
     }
-
+    
     score = 0;
-    timeLeft = 20;
+    timeLeft = 20; 
     clearInterval(timerInterval);
 
     startButton.classList.add('hide');
     document.querySelector('.start-container').classList.add('hide');
 
     const selectedCategory = categorySelect.value;
-    questions = shuffle([...allQuestions[selectedCategory]]);  // Shuffle questions
+    questions = shuffle([...allQuestions[selectedCategory]]);
 
     currentQuestionIndex = 0;
 
