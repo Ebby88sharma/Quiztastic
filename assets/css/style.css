@@ -275,7 +275,7 @@ button:hover {
 @media (min-width: 1024px) {
     .container {
         padding: 80px;
-        max-width: 600px;
+        max-width: 80%;
     }
 
     h1 {
