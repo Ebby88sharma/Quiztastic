@@ -70,7 +70,6 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 ### Future Implementations
 
-- **Progress Bar**: Show users their progress through the quiz.
 - **Leaderboard**: Track high scores across all players.
 - **Difficulty Levels**: Offer multiple difficulty settings to cater to beginners and experts.
 - **Save Quiz Results**: Save user quiz results for comparison over time.
