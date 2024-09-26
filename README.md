@@ -29,13 +29,21 @@ Quiztastic is a fun, interactive online quiz application designed for trivia ent
 
 ### User Stories
 
-- I want this website to be responsive to my device.
-- I want to easily navigate the site.
-- I want to test my knowledge on different subjects through a quiz.
-- I want to select different categories for the quiz.
-- I want to know if I selected the correct answer.
-- I want to see my final score after completing the quiz.
-- I want to restart the quiz once finished.
+- As a new user, I want to enter my name and choose a quiz category so that I feel personally involved in the quiz experience.
+- As a trivia lover, I want a variety of categories (General Knowledge, Science, History, Sports, Geography) so that I can choose a quiz topic that interests me.
+- As a player, I want the quiz to show me one question at a time with four answer options so that I can focus on answering each question without distraction
+- As a competitive user, I want to receive immediate feedback when I select an answer so that I know if my choice was correct or incorrect.
+- As a user, I want to hear sound effects when I select an answer so that the quiz feels more engaging.
+- As a user, I want a countdown timer for each question so that the quiz feels more exciting and I stay focused on answering within the time limit.
+- As a user, I want to be able to track my progress visually (e.g., via a progress bar) so that I know how far I am through the quiz.
+- As a user, I want a score summary at the end of the quiz so that I can see how many questions I answered correctly.
+- As a high-performer, I want celebratory feedback (sound and animation) if I score well so that I feel accomplished.
+- As a user who didn't perform well, I want motivational feedback (sound and text) if I don’t score well so that I feel encouraged to try again.
+- As a user, I want the ability to restart the quiz after viewing my score so that I can play again without reloading the page.
+- As a user, I want a seamless experience when selecting answers, where the quiz moves to the next question automatically, so that there is no disruption in the flow of the game.
+- As a mobile user, I want the quiz to be responsive across different devices so that I can play it on my phone, tablet, or desktop without layout issues.
+- As a player, I want questions to be randomized within each quiz category so that I can have a different experience every time I play.
+- As a returning user, I want the quiz to load quickly and be easy to understand so that I can start playing without unnecessary delays.
 
 ## Design
 
@@ -87,6 +95,7 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 ### Libraries and Frameworks
 
 - **Google Fonts**: For font choices (Raleway, Sans-serif).
+- **pixabay**: For sound effects(click sound, cheering sound, sad sound).
 
 ---
 
