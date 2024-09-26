@@ -394,9 +394,9 @@ function setNextQuestion() {
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
-
+    
     const shuffledAnswers = shuffle([...question.answers]);
-
+    
     shuffledAnswers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
