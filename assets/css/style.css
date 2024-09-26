@@ -246,7 +246,6 @@ button:hover {
 
 /* Media queries for responsiveness */
 
-/* For smaller screens like mobile */
 @media (max-width: 768px) {
     .container {
         padding: 40px;

@@ -9,12 +9,15 @@ const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
 const timerElement = document.getElementById('timer');
 const categorySelect = document.getElementById('category');
-const quizTitle = document.getElementById('quizTitle');  // For dynamic updates of the title
-
+const quizTitle = document.getElementById('quizTitle');  
 let currentQuestionIndex;
 let score = 0;
 let timeLeft = 20;
 let timerInterval;
+
+
+    const goodSound = document.getElementById('good-sound');
+    const poorSound = document.getElementById('poor-sound');
 
 const allQuestions = {
     "General Knowledge": [
@@ -463,30 +466,26 @@ function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
-    
+
     clearInterval(timerInterval);
-    
-    // Get audio elements
-    const goodSound = document.getElementById('good-sound');
-    const poorSound = document.getElementById('poor-sound');
-    
+
     const performancePercentage = (score / questions.length) * 100;
-    
+
+    goodSound.pause();
+    poorSound.pause();
+    goodSound.currentTime = 0;
+    poorSound.currentTime = 0;
+
     if (performancePercentage > 70) {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('success');
         animationContainer.innerHTML = 'Congratulations! 🎉';
-        goodSound.play();  // Play good performance sound
-    } else if (performancePercentage >= 50) {
-        animationContainer.classList.remove('hide');
-        animationContainer.classList.add('neutral');
-        animationContainer.innerHTML = 'Good job! You can do even better!';
-        averageSound.play();  // Play average performance sound
+        goodSound.play(); 
     } else {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
-        poorSound.play();  // Play poor performance sound
+        poorSound.play(); 
     }
 }
 
@@ -502,6 +501,12 @@ function restartQuiz() {
     categorySelect.selectedIndex = 0;
 
     progressBar.style.width = '0%';
+
+
+    goodSound.pause();
+    poorSound.pause();
+    goodSound.currentTime = 0;
+    poorSound.currentTime = 0;
 }
 
 function resetTimer() {
