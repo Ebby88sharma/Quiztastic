@@ -127,6 +127,23 @@ button:hover {
     transition: background-color 0.3s;
 }
 
+/* Progress bar styling */
+.progress-bar {
+    width: 100%;
+    background-color: #e0e0e0;
+    height: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.progress {
+    background-color: #4caf50;
+    height: 100%;
+    width: 0;
+    border-radius: 10px;
+    transition: width 0.3s;
+}
+
 .answer-buttons .btn:hover {
     background-color: #138496;
 }

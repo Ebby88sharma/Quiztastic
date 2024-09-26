@@ -383,6 +383,8 @@ function setNextQuestion() {
     showQuestion(questions[currentQuestionIndex]);
 
     quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
+    
+    updateProgressBar();
 
     resetTimer();
 }
@@ -477,6 +479,8 @@ function restartQuiz() {
 
     document.getElementById('username').value = '';
     categorySelect.selectedIndex = 0;
+
+    progressBar.style.width = '0%';
 }
 
 function resetTimer() {
@@ -498,3 +502,11 @@ function resetTimer() {
         }
     }, 1000);
 }
+
+const progressBar = document.getElementById('progress');
+
+function updateProgressBar() {
+    const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+    progressBar.style.width = progress + '%';
+}
+
