@@ -358,17 +358,26 @@ let questions = [];
 startButton.addEventListener('click', startQuiz);
 restartButton.addEventListener('click', restartQuiz);
 
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);  // Show the toast for 3 seconds
+}
 
 function startQuiz() {
     const username = document.getElementById('username').value;
 
     if (username.trim() === "") {
-        alert("Please enter your username.");
+        showToast("Please enter your username.");
         return;
     }
-    
+
     score = 0;
-    timeLeft = 20; 
+    timeLeft = 20;
     clearInterval(timerInterval);
 
     startButton.classList.add('hide');
@@ -389,17 +398,14 @@ function setNextQuestion() {
     showQuestion(questions[currentQuestionIndex]);
 
     quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-
     updateProgressBar();
-
     resetTimer();
 }
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    
     const shuffledAnswers = shuffle([...question.answers]);
-    
+
     shuffledAnswers.forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
@@ -423,8 +429,7 @@ function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
 
-    const clickSound = document.getElementById('click-sound');
-    clickSound.play();
+    clickSound.play(); // Play click sound when an answer is selected
 
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
@@ -446,21 +451,14 @@ function selectAnswer(e) {
     };
 }
 
-
-
-function setStatusClass(element, correct, isSelected = false) {
+function setStatusClass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
     } else {
         element.classList.add('wrong');
     }
-    if (isSelected) {
-        element.classList.add('selected');
-    }
-    element.disabled = true;
 }
-
 
 function clearStatusClass(element) {
     element.classList.remove('correct');
@@ -485,12 +483,12 @@ function showFinalScore() {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('success');
         animationContainer.innerHTML = 'Congratulations! 🎉';
-        goodSound.play(); 
+        goodSound.play();
     } else {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
-        poorSound.play(); 
+        poorSound.play();
     }
 }
 
@@ -507,7 +505,6 @@ function restartQuiz() {
 
     progressBar.style.width = '0%';
 
-
     goodSound.pause();
     poorSound.pause();
     goodSound.currentTime = 0;
@@ -523,7 +520,7 @@ function resetTimer() {
         timerElement.innerHTML = `Time Left: ${timeLeft}s`;
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            alert('Time is up!');
+            showToast('Time is up!');
             if (questions.length > currentQuestionIndex + 1) {
                 currentQuestionIndex++;
                 setNextQuestion();
