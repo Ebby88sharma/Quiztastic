@@ -63,7 +63,7 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 - **Raleway**: Used for headings and buttons to give a clean and professional look.
 - **Sans-serif**: Applied to body text for easy readability across all screen sizes.
-- **Font-awesome**: Used for sound icon and project icon.
+
 
 ---
 
@@ -99,6 +99,7 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 - **Google Fonts**: For font choices (Raleway, Sans-serif).
 - **pixabay**: For sound effects (click sound, cheering sound, sad sound).
+- **Font-awesome**: Used for sound icon and project icon.
 
 ---
 
