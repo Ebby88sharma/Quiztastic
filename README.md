@@ -2,10 +2,11 @@
 
 **Deployed Site**: [Quiztastic](https://ebby88sharma.github.io/Quiztastic/)
 
-![Quiztastic on multiple screens](./assets/images/backscreen2.png)
+![Quiztastic on multiple screens](./assets/images/background.png.png)
 
 Quiztastic is a fun, interactive online quiz application designed for trivia enthusiasts across a range of subjects. Whether you're into General Knowledge, Science, History, or Geography, this quiz will put your knowledge to the test with 8-10 challenging questions in each category.
 
+---
 
 ## CONTENTS
 
@@ -13,15 +14,14 @@ Quiztastic is a fun, interactive online quiz application designed for trivia ent
 2. [Design](#design)
     - [Colour Scheme](#colour-scheme)
     - [Typography](#typography)
-    - [Imagery](#imagery)
-    - [Wireframes](#wireframes)
 3. [Features](#features)
     - [General Features](#general-features)
     - [Future Implementations](#future-implementations)
 4. [Technologies Used](#technologies-used)
 5. [Testing](#testing)
-6. [Deployment & Local Development](#deployment-local-development)
-7. [Credits](#credits)
+6. [Learning Outcomes](#learning-outcomes)
+7. [Deployment & Local Development](#deployment-local-development)
+8. [Credits](#credits)
 
 ---
 
@@ -31,7 +31,7 @@ Quiztastic is a fun, interactive online quiz application designed for trivia ent
 
 - As a new user, I want to enter my name and choose a quiz category so that I feel personally involved in the quiz experience.
 - As a trivia lover, I want a variety of categories (General Knowledge, Science, History, Sports, Geography) so that I can choose a quiz topic that interests me.
-- As a player, I want the quiz to show me one question at a time with four answer options so that I can focus on answering each question without distraction
+- As a player, I want the quiz to show me one question at a time with four answer options so that I can focus on answering each question without distraction.
 - As a competitive user, I want to receive immediate feedback when I select an answer so that I know if my choice was correct or incorrect.
 - As a user, I want to hear sound effects when I select an answer so that the quiz feels more engaging.
 - As a user, I want a countdown timer for each question so that the quiz feels more exciting and I stay focused on answering within the time limit.
@@ -63,6 +63,9 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 - **Raleway**: Used for headings and buttons to give a clean and professional look.
 - **Sans-serif**: Applied to body text for easy readability across all screen sizes.
+- **Font-awesome**: Used for sound icon and project icon.
+
+---
 
 ## Features
 
@@ -95,7 +98,39 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 ### Libraries and Frameworks
 
 - **Google Fonts**: For font choices (Raleway, Sans-serif).
-- **pixabay**: For sound effects(click sound, cheering sound, sad sound).
+- **pixabay**: For sound effects (click sound, cheering sound, sad sound).
+
+---
+
+## Testing
+
+### Manual Testing
+
+The following aspects of the quiz were manually tested:
+
+- **Quiz Start**: The quiz starts properly after entering a username and selecting a category.
+- **Question Navigation**: Questions load one after the other, and the "Next Question" button works as expected.
+- **Answer Selection**: Selecting an answer gives visual feedback for correct/incorrect answers, and the score updates correctly.
+- **Score Calculation**: The final score is correctly calculated based on the number of correct answers.
+- **Sound Control**: The mute/unmute functionality works, and the sound icon changes to reflect the sound state.
+- **Timer**: The countdown timer works, and the quiz moves to the next question when time runs out.
+- **Toast Messages**: Toast notifications display when the username is missing, time runs out, or no questions are available.
+- **Quiz Restart**: Restarting the quiz resets the questions, score, and timer, allowing the game to be replayed.
+  
+---
+
+## Learning Outcomes
+
+Through building **Quiztastic**, several key front-end skills were reinforced:
+
+1. **DOM Manipulation**: Dynamically updating HTML elements based on user interactions such as displaying questions and handling results.
+2. **Event Handling**: Handling user inputs and clicks efficiently to enhance interactivity.
+3. **Fetch API**: Loading question data from an external JSON file.
+4. **Responsive Design**: Ensuring compatibility across different screen sizes.
+5. **CSS Animations & Transitions**: Creating hover effects and visual feedback for buttons and toast messages.
+6. **Sound Control**: Implementing sound feedback with mute/unmute functionality for better user experience.
+7. **Progress Tracking**: Using a progress bar and score tracking for real-time user feedback.
+8. **User Feedback Mechanisms**: Providing motivational messages and sound effects based on user performance.
 
 ---
 
