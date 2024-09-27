@@ -7,6 +7,8 @@
     <title>Quiztastic</title>
     <!-- Link to CSS file for styling -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- Favicons for different platforms -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/brain.png">
     <link rel="icon" sizes="32x32" href="./assets/images/brain.png">
@@ -27,6 +29,11 @@
 
         <!-- Quiz container -->
         <div class="quiz-container" id="quiz">
+            <!-- Sound Control Icon inside the quiz container -->
+            <div id="sound-control">
+                <i id="sound-icon" class="fas fa-volume-up"></i>
+            </div>
+
             <h1 id="quizTitle">Welcome to Quiztastic!</h1>
             <div class="start-container">
                 <input type="text" id="username" placeholder="Enter your username">
@@ -60,6 +67,7 @@
         <div class="toast" id="toast"></div>
 
     </div>
+
     <!--JavaScript file -->
     <script src="script.js"></script>
 </body>
