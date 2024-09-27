@@ -24,22 +24,21 @@ const clickSound = document.getElementById('click-sound');
 // Sound control state
 let isMuted = false;
 
-// Function to toggle sound on/off
+// Toggle sound on/off
 soundIcon.addEventListener('click', toggleSound);
 
 function toggleSound() {
     isMuted = !isMuted;
-    // Toggle icon
     soundIcon.classList.toggle('fa-volume-up', !isMuted);
     soundIcon.classList.toggle('fa-volume-mute', isMuted);
     
-    // Mute/unmute sounds
+
     goodSound.muted = isMuted;
     poorSound.muted = isMuted;
     clickSound.muted = isMuted;
 }
 
-// Fetch questions data (JSON) and initialize quiz
+// Load quiz questions from JSON file
 function loadQuestions() {
     fetch('./assets/data/questions.json')
         .then(response => response.json())
@@ -53,7 +52,7 @@ function loadQuestions() {
 
 window.onload = loadQuestions;
 
-// Toast message function
+// Toast message
 function showToast(message) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
@@ -64,12 +63,13 @@ function showToast(message) {
     }, 3000);
 }
 
+// Start the quiz
 startButton.addEventListener('click', startQuiz);
-restartButton.addEventListener('click', restartQuiz);
 
 function startQuiz() {
     const username = document.getElementById('username').value;
 
+    // Validate username input
     if (username.trim() === "") {
         showToast("Please enter your username.");
         return;
@@ -89,9 +89,8 @@ function startQuiz() {
         return;
     }
 
-    // Use the fetched questions
+    // Shuffle and load questions
     questions = shuffle([...allQuestions[selectedCategory]]);
-    
     currentQuestionIndex = 0;
 
     quizTitle.innerText = `Question 1/${questions.length}`;
@@ -99,20 +98,18 @@ function startQuiz() {
     setNextQuestion();
 }
 
+// Set next question
 function setNextQuestion() {
     resetState();
     showQuestion(questions[currentQuestionIndex]);
-
     quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-
     updateProgressBar();
-
     resetTimer();
 }
 
+// Display current question and answers
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    
     const shuffledAnswers = shuffle([...question.answers]);
     
     shuffledAnswers.forEach(answer => {
@@ -127,6 +124,7 @@ function showQuestion(question) {
     });
 }
 
+// Reset answer buttons
 function resetState() {
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
@@ -134,11 +132,12 @@ function resetState() {
     }
 }
 
+// Handle answer selection
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
 
-    clickSound.play(); 
+    clickSound.play();
 
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
@@ -160,29 +159,28 @@ function selectAnswer(e) {
     };
 }
 
-function setStatusClass(element, correct, isSelected = false) {
+// correct/incorrect answers
+function setStatusClass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
     } else {
         element.classList.add('wrong');
     }
-    if (isSelected) {
-        element.classList.add('selected');
-    }
     element.disabled = true;
 }
 
+// Clear status class from answer buttons
 function clearStatusClass(element) {
     element.classList.remove('correct');
     element.classList.remove('wrong');
 }
 
+// Show the final score
 function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
     finalScoreText.innerText = `Your Final Score: ${score}`;
-
     clearInterval(timerInterval);
 
     const performancePercentage = (score / questions.length) * 100;
@@ -192,18 +190,22 @@ function showFinalScore() {
     goodSound.currentTime = 0;
     poorSound.currentTime = 0;
 
+    // Success or failure message
     if (performancePercentage > 70) {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('success');
         animationContainer.innerHTML = 'Congratulations! 🎉';
-        goodSound.play(); 
+        goodSound.play();
     } else {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
-        poorSound.play(); 
+        poorSound.play();
     }
 }
+
+// Restart the quiz
+restartButton.addEventListener('click', restartQuiz);
 
 function restartQuiz() {
     resultContainer.classList.add('hide');
@@ -212,18 +214,16 @@ function restartQuiz() {
     document.querySelector('.start-container').classList.remove('hide');
     questionContainer.classList.add('hide');
     quizTitle.innerText = "Welcome to Quiztastic!";
-
     document.getElementById('username').value = '';
     categorySelect.selectedIndex = 0;
-
     progressBar.style.width = '0%';
-
     goodSound.pause();
     poorSound.pause();
     goodSound.currentTime = 0;
     poorSound.currentTime = 0;
 }
 
+// timer handling
 function resetTimer() {
     timeLeft = 20;
     clearInterval(timerInterval);
@@ -244,6 +244,7 @@ function resetTimer() {
     }, 1000);
 }
 
+// Update the progress bar
 const progressBar = document.getElementById('progress');
 
 function updateProgressBar() {
@@ -251,6 +252,7 @@ function updateProgressBar() {
     progressBar.style.width = progress + '%';
 }
 
+// Shuffle the array for question and answers
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

@@ -73,7 +73,6 @@ h1 {
     position: absolute;
     top: 20px;
     right: 20px;
-    /* Top-right corner */
     cursor: pointer;
     background-color: #4287f5;
     border-radius: 50%;
@@ -85,7 +84,6 @@ h1 {
 #sound-control:hover {
     background-color: #306bd4;
     transform: scale(1.15);
-    /* Slight zoom on hover */
 }
 
 #sound-icon {
@@ -93,7 +91,6 @@ h1 {
     height: 30px;
     color: white;
     font-size: 1.7em;
-    /* Bigger icon for visibility */
 }
 /* Inputs */
 input[type="text"],
