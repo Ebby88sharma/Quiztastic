@@ -2,7 +2,7 @@
 
 **Deployed Site**: [Quiztastic](https://ebby88sharma.github.io/Quiztastic/)
 
-![Quiztastic on multiple screens](./assets/images/background.png.png)
+![Quiztastic on multiple screens](./assets/images/background.png)
 
 Quiztastic is a fun, interactive online quiz application designed for trivia enthusiasts across a range of subjects. Whether you're into General Knowledge, Science, History, or Geography, this quiz will put your knowledge to the test with 8-10 challenging questions in each category.
 
