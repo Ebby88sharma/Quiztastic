@@ -9,7 +9,7 @@ const restartButton = document.getElementById('restart-btn');
 const animationContainer = document.getElementById('animation-container');
 const timerElement = document.getElementById('timer');
 const categorySelect = document.getElementById('category');
-const quizTitle = document.getElementById('quizTitle');  
+const quizTitle = document.getElementById('quizTitle');
 let currentQuestionIndex;
 let score = 0;
 let timeLeft = 20;
@@ -19,42 +19,32 @@ const goodSound = document.getElementById('good-sound');
 const poorSound = document.getElementById('poor-sound');
 const clickSound = document.getElementById('click-sound');
 
-// Global object to hold the fetched questions
 let allQuestions = {};
 
-// Fetch the questions from the JSON file
+/** Loads questions from JSON file on page load */
 function loadQuestions() {
     fetch('./assets/data/questions.json')
         .then(response => response.json())
-        .then(data => {
-            allQuestions = data; // Assign the fetched data to the global allQuestions object
-            console.log('Questions loaded:', allQuestions); // Debugging
-        })
-        .catch(error => {
-            console.error('Error loading questions:', error);
-        });
+        .then(data => allQuestions = data)
+        .catch(error => console.error('Error loading questions:', error));
 }
 
-// Call loadQuestions when the window loads
 window.onload = loadQuestions;
 
-// Function to show toast message
+/** Displays toast notification */
 function showToast(message) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
     toast.className = "toast show";
-
-    setTimeout(function() {
-        toast.className = toast.className.replace("show", "");
-    }, 3000); // Show for 3 seconds
+    setTimeout(() => toast.className = toast.className.replace("show", ""), 3000);
 }
 
 startButton.addEventListener('click', startQuiz);
 restartButton.addEventListener('click', restartQuiz);
 
+/** Starts the quiz and initializes the first question */
 function startQuiz() {
     const username = document.getElementById('username').value;
-
     if (username.trim() === "") {
         showToast("Please enter your username.");
         return;
@@ -68,15 +58,12 @@ function startQuiz() {
     document.querySelector('.start-container').classList.add('hide');
 
     const selectedCategory = categorySelect.value;
-
     if (!allQuestions[selectedCategory]) {
         showToast("No questions available for the selected category.");
         return;
     }
 
-    // Use the fetched questions
     questions = shuffle([...allQuestions[selectedCategory]]);
-    
     currentQuestionIndex = 0;
 
     quizTitle.innerText = `Question 1/${questions.length}`;
@@ -84,34 +71,29 @@ function startQuiz() {
     setNextQuestion();
 }
 
+/** Prepares the next question */
 function setNextQuestion() {
     resetState();
     showQuestion(questions[currentQuestionIndex]);
-
     quizTitle.innerText = `Question ${currentQuestionIndex + 1}/${questions.length}`;
-
     updateProgressBar();
-
     resetTimer();
 }
 
+/** Displays the current question and answer options */
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    
-    const shuffledAnswers = shuffle([...question.answers]);
-    
-    shuffledAnswers.forEach(answer => {
+    shuffle([...question.answers]).forEach(answer => {
         const button = document.createElement('button');
         button.innerText = answer.text;
         button.classList.add('btn');
-        if (answer.correct) {
-            button.dataset.correct = answer.correct;
-        }
+        if (answer.correct) button.dataset.correct = answer.correct;
         button.addEventListener('click', selectAnswer);
         answerButtonsElement.appendChild(button);
     });
 }
 
+/** Resets the state before showing a new question */
 function resetState() {
     nextButton.classList.add('hide');
     while (answerButtonsElement.firstChild) {
@@ -119,20 +101,19 @@ function resetState() {
     }
 }
 
+/** Handles the selection of an answer */
 function selectAnswer(e) {
     const selectedButton = e.target;
     const correct = selectedButton.dataset.correct;
 
-    clickSound.play(); // Play click sound on answer selection
+    clickSound.play();
 
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct);
         button.disabled = true;
     });
 
-    if (correct) {
-        score++;
-    }
+    if (correct) score++;
 
     clickSound.onended = () => {
         if (questions.length > currentQuestionIndex + 1) {
@@ -145,24 +126,19 @@ function selectAnswer(e) {
     };
 }
 
-function setStatusClass(element, correct, isSelected = false) {
+/** Adds the appropriate class for correct or incorrect answers */
+function setStatusClass(element, correct) {
     clearStatusClass(element);
-    if (correct) {
-        element.classList.add('correct');
-    } else {
-        element.classList.add('wrong');
-    }
-    if (isSelected) {
-        element.classList.add('selected');
-    }
-    element.disabled = true;
+    if (correct) element.classList.add('correct');
+    else element.classList.add('wrong');
 }
 
+/** Removes any existing status classes */
 function clearStatusClass(element) {
-    element.classList.remove('correct');
-    element.classList.remove('wrong');
+    element.classList.remove('correct', 'wrong');
 }
 
+/** Displays the final score and plays sound effects based on performance */
 function showFinalScore() {
     questionContainer.classList.add('hide');
     resultContainer.classList.remove('hide');
@@ -181,15 +157,16 @@ function showFinalScore() {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('success');
         animationContainer.innerHTML = 'Congratulations! 🎉';
-        goodSound.play(); 
+        goodSound.play();
     } else {
         animationContainer.classList.remove('hide');
         animationContainer.classList.add('fail');
         animationContainer.innerHTML = 'Try Again! 😔';
-        poorSound.play(); 
+        poorSound.play();
     }
 }
 
+/** Restarts the quiz and resets the UI */
 function restartQuiz() {
     resultContainer.classList.add('hide');
     animationContainer.classList.add('hide');
@@ -209,6 +186,7 @@ function restartQuiz() {
     poorSound.currentTime = 0;
 }
 
+/** Resets and starts the question timer */
 function resetTimer() {
     timeLeft = 20;
     clearInterval(timerInterval);
@@ -229,13 +207,14 @@ function resetTimer() {
     }, 1000);
 }
 
+/** Updates the quiz progress bar */
 const progressBar = document.getElementById('progress');
-
 function updateProgressBar() {
     const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
     progressBar.style.width = progress + '%';
 }
 
+/** For shuffling */
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

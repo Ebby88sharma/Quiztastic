@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiztastic</title>
+    <!-- Link to CSS file for styling -->
     <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- Favicons for different platforms -->
     <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/brain.png">
     <link rel="icon" sizes="32x32" href="./assets/images/brain.png">
     <link rel="icon" sizes="16x16" href="./assets/images/brain.png">
@@ -13,13 +15,17 @@
 
 <body>
     <div class="container">
+        <!-- Progress bar for quiz progress -->
         <div class="progress-bar">
             <div class="progress" id="progress"></div>
         </div>
+
+        <!-- Audio files for sounds -->
         <audio id="good-sound" src="./assets/audio/cheering-and-clapping-crowd-1-5995.mp3"></audio>
         <audio id="poor-sound" src="./assets/audio/wah-wah-sad-trombone-6347.mp3"></audio>
         <audio id="click-sound" src="./assets/audio/clickselect-92098.mp3"></audio>
 
+        <!-- Quiz container -->
         <div class="quiz-container" id="quiz">
             <h1 id="quizTitle">Welcome to Quiztastic!</h1>
             <div class="start-container">
@@ -35,6 +41,7 @@
             </div>
         </div>
 
+        <!-- Container for quiz questions -->
         <div class="question-container hide" id="question-container">
             <div id="question">Question</div>
             <div class="answer-buttons" id="answer-buttons"></div>
@@ -42,6 +49,7 @@
             <button id="next-btn" class="next-btn hide">Next Question</button>
         </div>
 
+        <!-- Result screen container -->
         <div class="result-container hide" id="result-container">
             <h2 id="final-score"></h2>
             <button id="restart-btn" class="restart-btn">Restart Quiz</button>
@@ -52,6 +60,7 @@
         <div class="toast" id="toast"></div>
 
     </div>
+    <!--JavaScript file -->
     <script src="script.js"></script>
 </body>
 
