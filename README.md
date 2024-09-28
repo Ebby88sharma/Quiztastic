@@ -105,6 +105,10 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 ## Testing
 
+### W3c HTML Validator ![index.html validator](./assets/images/htmlValidator.png)
+### JigSaw CSS Validator ![style.css validator](./assets/images/cssValidator.png)
+### JSlint JS Validator ![script.js validator](./assets/images/jsLint.png)
+
 ### Manual Testing
 
 The following aspects of the quiz were manually tested:
@@ -117,6 +121,8 @@ The following aspects of the quiz were manually tested:
 - **Timer**: The countdown timer works, and the quiz moves to the next question when time runs out.
 - **Toast Messages**: Toast notifications display when the username is missing, time runs out, or no questions are available.
 - **Quiz Restart**: Restarting the quiz resets the questions, score, and timer, allowing the game to be replayed.
+
+
   
 ---
 
