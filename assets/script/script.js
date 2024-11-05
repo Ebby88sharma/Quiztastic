@@ -15,6 +15,8 @@ let currentQuestionIndex;
 let score = 0;
 let timeLeft = 20;
 let timerInterval;
+let allQuestions ={};
+let questions = []
 
 // Audio elements
 const goodSound = document.getElementById('good-sound');
