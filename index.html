@@ -16,59 +16,62 @@
 </head>
 
 <body>
-    <div class="container">
+    <header>
         <!-- Progress bar for quiz progress -->
-        <div class="progress-bar">
+        <div class="progress-bar" aria-label="Quiz Progress">
             <div class="progress" id="progress"></div>
         </div>
+    </header>
 
+    <main>
         <!-- Audio files for sounds -->
         <audio id="good-sound" src="./assets/audio/cheering-and-clapping-crowd-1-5995.mp3"></audio>
         <audio id="poor-sound" src="./assets/audio/wah-wah-sad-trombone-6347.mp3"></audio>
         <audio id="click-sound" src="./assets/audio/clickselect-92098.mp3"></audio>
 
-        <!-- Quiz container -->
-        <div class="quiz-container" id="quiz">
-            <!-- Sound Control Icon inside the quiz container -->
-            <div id="sound-control">
+        <!-- Quiz introduction section -->
+        <section class="quiz-intro" id="quiz">
+            <button id="sound-control" aria-label="Toggle Sound">
                 <i id="sound-icon" class="fas fa-volume-up"></i>
-            </div>
+            </button>
 
             <h1 id="quizTitle">Welcome to Quiztastic!</h1>
-            <div class="start-container">
-                <input type="text" id="username" placeholder="Enter your username">
-                <select id="category">
+            <form class="start-container" aria-labelledby="quizTitle">
+                <label for="username" class="visually-hidden">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" aria-required="true">
+
+                <label for="category" class="visually-hidden">Quiz Category</label>
+                <select id="category" aria-required="true">
                     <option value="General Knowledge">General Knowledge</option>
                     <option value="Science">Science</option>
                     <option value="History">History</option>
                     <option value="Sports">Sports</option>
                     <option value="Geography">Geography</option>
                 </select>
-                <button id="start-quiz" class="start-btn">Start Quiz</button>
-            </div>
-        </div>
+                <button type="button" id="start-quiz" class="start-btn">Start Quiz</button>
+            </form>
+        </section>
 
-        <!-- Container for quiz questions -->
-        <div class="question-container hide" id="question-container">
-            <div id="question">Question</div>
-            <div class="answer-buttons" id="answer-buttons"></div>
-            <div class="timer" id="timer">Time Left: 20s</div>
+        <!-- Quiz questions section -->
+        <section class="question-container hide" id="question-container" aria-live="polite">
+            <h2 id="question">Question</h2>
+            <div class="answer-buttons" id="answer-buttons" role="group" aria-labelledby="question"></div>
+            <p class="timer" id="timer" aria-live="polite">Time Left: 20s</p>
             <button id="next-btn" class="next-btn hide">Next Question</button>
-        </div>
+        </section>
 
-        <!-- Result screen container -->
-        <div class="result-container hide" id="result-container">
-            <h2 id="final-score"></h2>
+        <!-- Quiz results section -->
+        <section class="result-container hide" id="result-container">
+            <h2 id="final-score" aria-live="polite">Your Final Score</h2>
             <button id="restart-btn" class="restart-btn">Restart Quiz</button>
             <div id="animation-container" class="hide"></div>
-        </div>
+        </section>
+    </main>
 
-        <!-- Toast message container -->
-        <div class="toast" id="toast"></div>
+    <!-- Toast message container for notifications -->
+    <div class="toast" id="toast" role="alert" aria-live="assertive"></div>
 
-    </div>
-
-    <!--JavaScript file -->
+    <!-- JavaScript file -->
     <script src="assets/script/script.js"></script>
 </body>
 
