@@ -16,59 +16,67 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- Progress bar for quiz progress -->
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-
-        <!-- Audio files for sounds -->
-        <audio id="good-sound" src="./assets/audio/cheering-and-clapping-crowd-1-5995.mp3"></audio>
-        <audio id="poor-sound" src="./assets/audio/wah-wah-sad-trombone-6347.mp3"></audio>
-        <audio id="click-sound" src="./assets/audio/clickselect-92098.mp3"></audio>
-
-        <!-- Quiz container -->
-        <div class="quiz-container" id="quiz">
-            <!-- Sound Control Icon inside the quiz container -->
+    <main class="container">
+        <!-- Header Section -->
+        <header>
             <div id="sound-control">
-                <i id="sound-icon" class="fas fa-volume-up"></i>
+                <i id="sound-icon" class="fas fa-volume-up" aria-hidden="true"></i>
+                <span class="sr-only">Toggle sound</span>
             </div>
-
             <h1 id="quizTitle">Welcome to Quiztastic!</h1>
-            <div class="start-container">
-                <input type="text" id="username" placeholder="Enter your username">
-                <select id="category">
+        </header>
+
+        <!-- Progress Bar -->
+        <section aria-label="Quiz Progress">
+            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress" id="progress"></div>
+            </div>
+        </section>
+
+        <!-- Audio for sounds -->
+        <section aria-hidden="true">
+            <audio id="good-sound" src="./assets/audio/cheering-and-clapping-crowd-1-5995.mp3"></audio>
+            <audio id="poor-sound" src="./assets/audio/wah-wah-sad-trombone-6347.mp3"></audio>
+            <audio id="click-sound" src="./assets/audio/clickselect-92098.mp3"></audio>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-container" id="quiz">
+            <form class="start-container">
+                <label for="username">Enter your username:</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+                <label for="category">Select a category:</label>
+                <select id="category" name="category">
                     <option value="General Knowledge">General Knowledge</option>
                     <option value="Science">Science</option>
                     <option value="History">History</option>
                     <option value="Sports">Sports</option>
                     <option value="Geography">Geography</option>
                 </select>
-                <button id="start-quiz" class="start-btn">Start Quiz</button>
-            </div>
-        </div>
+                <button type="button" id="start-quiz" class="start-btn">Start Quiz</button>
+            </form>
+        </section>
 
-        <!-- Container for quiz questions -->
-        <div class="question-container hide" id="question-container">
-            <div id="question">Question</div>
+        <!-- Question Section -->
+        <section class="question-container hide" id="question-container" aria-labelledby="question">
+            <h2 id="question">Question</h2>
             <div class="answer-buttons" id="answer-buttons"></div>
             <div class="timer" id="timer">Time Left: 20s</div>
             <button id="next-btn" class="next-btn hide">Next Question</button>
-        </div>
+        </section>
 
-        <!-- Result screen container -->
-        <div class="result-container hide" id="result-container">
+        <!-- Result Section -->
+        <section class="result-container hide" id="result-container" aria-labelledby="final-score">
             <h2 id="final-score"></h2>
             <button id="restart-btn" class="restart-btn">Restart Quiz</button>
-            <div id="animation-container" class="hide"></div>
-        </div>
+            <div id="animation-container" class="hide" aria-hidden="true"></div>
+        </section>
 
-        <!-- Toast message container -->
-        <div class="toast" id="toast"></div>
+        <!-- Toast Notification -->
+        <aside class="toast" id="toast" role="alert"></aside>
+    </main>
 
-    </div>
-
-    <!--JavaScript file -->
+    <!-- JavaScript file -->
     <script src="assets/script/script.js"></script>
 </body>
 
