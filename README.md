@@ -83,16 +83,27 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 - **Sound Effects**: Sound effects are played for correct/incorrect answers and celebratory messages
 - **Progress Bar**: A progress bar is displayed to show the user's progress through the quiz
 - **Score Summary**: A summary of the user's score is displayed at the end of the quiz
--**Running Project Images** -
+
+### Running Project Screenshots
+
 - **Home-Page**: Users can select from a variety of quiz categories along with needs to add Username to start the quiz 
+
 ![Home_page](./assets/images/0-bg.png)
+
 - **If there is no username**: Toast message is shown if there is no username entered
+
 ![Toast-Message](./assets/images/1-bg.png)
+
 - **Question-Page**: After starting the question pages for different scenarios.
+
 ![Question-2](./assets/images/2-bg.png)
+
 ![Time-Up](./assets/images/5-bg.png)
+
 - **Quiz-Finished**: Users can see what they scored based on that success or failure message is shown along with respective sound-effects.
+
 ![Failure](./assets/images/3-bg.png)
+
 ![Success](./assets/images/4-bg.png)
 
 ### Future Implementations
