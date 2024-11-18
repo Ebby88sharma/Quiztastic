@@ -89,7 +89,7 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 - **If there is no username**: Toast message is shown if there is no username entered
 ![Toast-Message](./assets/images/1-bg.png)
 - **Question-Page**: After starting the question pages for different scenarios.
-![Question-2](./assets/images/1-bg.png)
+![Question-2](./assets/images/2-bg.png)
 ![Time-Up](./assets/images/5-bg.png)
 - **Quiz-Finished**: Users can see what they scored based on that success or failure message is shown along with respective sound-effects.
 ![Failure](./assets/images/3-bg.png)
