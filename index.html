@@ -33,7 +33,7 @@
             </div>
         </section>
 
-        <!-- Audio for sounds -->
+        <!-- Audio Section -->
         <section aria-hidden="true">
             <audio id="good-sound" src="./assets/audio/cheering-and-clapping-crowd-1-5995.mp3"></audio>
             <audio id="poor-sound" src="./assets/audio/wah-wah-sad-trombone-6347.mp3"></audio>
@@ -43,8 +43,9 @@
         <!-- Quiz Section -->
         <section class="quiz-container" id="quiz">
             <form class="start-container">
-                <input type="text" id="username" name="username" placeholder="Enter your username" required>
-                <select id="category" name="category">
+                <input type="text" id="username" name="username" placeholder="Enter your username" required
+                    aria-label="Enter your username">
+                <select id="category" name="category" aria-label="Select a category">
                     <option value="General Knowledge">General Knowledge</option>
                     <option value="Science">Science</option>
                     <option value="History">History</option>
@@ -56,7 +57,7 @@
         </section>
 
         <!-- Question Section -->
-        <section class="question-container hide" id="question-container" aria-labelledby="question">
+        <section class="question-container hide" id="question-container">
             <h2 id="question">Question</h2>
             <div class="answer-buttons" id="answer-buttons"></div>
             <div class="timer" id="timer">Time Left: 20s</div>
@@ -64,10 +65,10 @@
         </section>
 
         <!-- Result Section -->
-        <section class="result-container hide" id="result-container" aria-labelledby="final-score">
+        <section class="result-container hide" id="result-container">
             <h2 id="final-score"></h2>
             <button id="restart-btn" class="restart-btn">Restart Quiz</button>
-            <div id="animation-container" class="hide" aria-hidden="true"></div>
+            <div id="animation-container" class="hide"></div>
         </section>
 
         <!-- Toast Notification -->
