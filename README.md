@@ -172,7 +172,7 @@ Through building **Quiztastic**, several key front-end skills were reinforced:
 
 ### Remote Deployment
 
-The site is deployed using **GitHub Pages**.
+The site is deployed using **GitHub Pages**: [Quiztastic](https://ebby88sharma.github.io/Quiztastic/).
 
 1. In the GitHub repository, navigate to the **Settings** tab.
 2. On the left-side menu, click on **Pages**.
