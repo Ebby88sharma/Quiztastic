@@ -107,10 +107,10 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 Validator Testing
 HTML
-No errors were returned when passing through the official W3C validator
+No errors were returned when passing through the official W3C(https://validator.w3.org/nu/?doc=https%3A%2F%2Febby88sharma.github.io%2FQuiztastic%2F) validator
 
 CSS
-No errors were found when passing through the official [JigSaw](#https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Febby88sharma.github.io%2FQuiztastic%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) validator
+No errors were found when passing through the official [JigSaw](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Febby88sharma.github.io%2FQuiztastic%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en) validator
 
 JavaScript
 No errors were found when passing through the official Jshint validator
