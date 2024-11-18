@@ -105,9 +105,28 @@ Fonts were selected from **Google Fonts** to create a modern yet approachable st
 
 ## Testing
 
-### W3c HTML Validator ![index.html validator](./assets/images/htmlValidator.png)
-### JigSaw CSS Validator ![style.css validator](./assets/images/cssValidator.png)
-### JSlint JS Validator ![script.js validator](./assets/images/jsLint.png)
+- In this section, you need to convince the assessor that you have conducted enough testing to legitimately believe that the site works well. Essentially, in this part you will want to go over all of your project’s features and ensure that they all work as intended, with the project providing an easy and straightforward way for the users to achieve their goals.
+
+In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+
+You should also mention in this section any interesting bugs or problems you discovered during your testing, even if you haven't addressed them yet.
+
+If this section grows too long, you may want to split it off into a separate file and link to it from here.
+
+Validator Testing
+HTML
+No errors were returned when passing through the official W3C validator
+
+CSS
+No errors were found when passing through the official ([JigSaw](#https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Febby88sharma.github.io%2FQuiztastic%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)) validator
+
+JavaScript
+No errors were found when passing through the official Jshint validator
+The following metrics were returned:
+- There are 23 functions in this file.
+- Function with the largest signature take 2 arguments, while the median is 0.
+- Largest function has 18 statements in it, while the median is 4.
+- The most complex function has a cyclomatic complexity value of 3 while the median is 1.
 
 ### Manual Testing
 
